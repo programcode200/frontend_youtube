@@ -8,8 +8,6 @@ const initialState = {
   userData: null,
 };
 
-
-
 export const createAccount = createAsyncThunk("register", async (data) => {
   const formData = new FormData();
   formData.append("avatar", data.avatar[0]);
@@ -22,13 +20,12 @@ export const createAccount = createAsyncThunk("register", async (data) => {
   }
 
   console.log("form signup", formData);
-  
 
   try {
     const response = await axiosInstance.post("/users/register", formData);
     console.log("API Response:", response.data); // ✅ Log response
     toast.success("Registered successfully!!!");
-    
+
     return response.data;
   } catch (error) {
     toast.error(error?.response?.data?.error);
@@ -89,8 +86,6 @@ export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
 
   return response.data.data;
 });
-
-
 
 export const updateAvatar = createAsyncThunk("updateAvatar", async (avatar) => {
   try {
