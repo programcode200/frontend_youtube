@@ -88,6 +88,9 @@ export const userLogout = createAsyncThunk("logout", async () => {
   try {
     const response = await axiosInstance.post("/users/logout");
     toast.success(response.data?.message);
+
+    localStorage.removeItem("token");
+
     return response.data;
   } catch (error) {
     toast.error(error?.response?.data?.error);
@@ -199,6 +202,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.status = false;
       state.userData = null;
+      
     });
     builder.addCase(getCurrentUser.pending, (state) => {
       state.loading = true;
