@@ -33,15 +33,56 @@ export const createAccount = createAsyncThunk("register", async (data) => {
   }
 });
 
+
+
+// export const userLogin = createAsyncThunk("login", async (data) => {
+//   try {
+//     const response = await axiosInstance.post("/users/login", data);
+//     return response.data.data.user;
+//   } catch (error) {
+//     toast.error(error?.response?.data?.error, "jjdjdj");
+//     throw error;
+//   }
+// });
+
+
 export const userLogin = createAsyncThunk("login", async (data) => {
   try {
     const response = await axiosInstance.post("/users/login", data);
-    return response.data.data.user;
+
+    // Extract the accessToken and refreshToken from response
+    const { accessToken, refreshToken, user } = response.data.data;
+
+    // Store access token in localStorage
+    localStorage.setItem("token", accessToken);
+
+    // Store refresh token in cookies (optional but recommended)
+    document.cookie = `refreshToken=${refreshToken}; path=/; secure; HttpOnly`;
+
+    toast.success("Login successful!");
+    return user;
   } catch (error) {
-    toast.error(error?.response?.data?.error, "jjdjdj");
+    toast.error(error?.response?.data?.error || "Login failed");
     throw error;
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const userLogout = createAsyncThunk("logout", async () => {
   try {
@@ -86,6 +127,7 @@ export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
 
   return response.data.data;
 });
+
 
 export const updateAvatar = createAsyncThunk("updateAvatar", async (avatar) => {
   try {
