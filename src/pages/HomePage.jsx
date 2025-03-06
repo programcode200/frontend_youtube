@@ -15,6 +15,7 @@ function HomePage() {
     const hasNextPage = useSelector(
         (state) => state.video?.videos?.hasNextPage
     );
+    
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
 
