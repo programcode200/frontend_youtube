@@ -17,6 +17,7 @@ function Login() {
     const dispatch = useDispatch();
     const loading = useSelector((state) => state.auth?.loading);
 
+    
     const submit = async (data) => {
         const isEmail = data.username.includes("@");
         const loginData = isEmail
@@ -29,6 +30,7 @@ function Login() {
             navigate("/");
         }
     };
+
 
     if (loading) {
         return <LoginSkeleton />;

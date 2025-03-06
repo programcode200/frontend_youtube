@@ -35,37 +35,37 @@ export const createAccount = createAsyncThunk("register", async (data) => {
 
 
 
-// export const userLogin = createAsyncThunk("login", async (data) => {
-//   try {
-//     const response = await axiosInstance.post("/users/login", data);
-//     return response.data.data.user;
-//   } catch (error) {
-//     toast.error(error?.response?.data?.error, "jjdjdj");
-//     throw error;
-//   }
-// });
-
-
 export const userLogin = createAsyncThunk("login", async (data) => {
   try {
     const response = await axiosInstance.post("/users/login", data);
-
-    // Extract the accessToken and refreshToken from response
-    const { accessToken, refreshToken, user } = response.data.data;
-
-    // Store access token in localStorage
-    localStorage.setItem("token", accessToken);
-
-    // Store refresh token in cookies (optional but recommended)
-    document.cookie = `refreshToken=${refreshToken}; path=/; secure; HttpOnly`;
-
-    toast.success("Login successful!");
-    return user;
+    return response.data.data.user;
   } catch (error) {
-    toast.error(error?.response?.data?.error || "Login failed");
+    toast.error(error?.response?.data?.error, "jjdjdj");
     throw error;
   }
 });
+
+
+// export const userLogin = createAsyncThunk("login", async (data) => {
+//   try {
+//     const response = await axiosInstance.post("/users/login", data);
+
+//     // Extract the accessToken and refreshToken from response
+//     const { accessToken, refreshToken, user } = response.data.data;
+
+//     // Store access token in localStorage
+//     localStorage.setItem("token", accessToken);
+
+//     // Store refresh token in cookies (optional but recommended)
+//     document.cookie = `refreshToken=${refreshToken}; path=/; secure; HttpOnly`;
+
+//     toast.success("Login successful!");
+//     return user;
+//   } catch (error) {
+//     toast.error(error?.response?.data?.error || "Login failed");
+//     throw error;
+//   }
+// });
 
 
 
@@ -124,6 +124,8 @@ export const changePassword = createAsyncThunk(
 
 export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
   const response = await axiosInstance.get("/users/current-user");
+  console.log(response.data.data);
+  
 
   return response.data.data;
 });
