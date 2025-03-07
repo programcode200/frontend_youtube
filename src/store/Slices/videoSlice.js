@@ -115,7 +115,7 @@ export const togglePublishStatus = createAsyncThunk(
   "togglePublishStatus",
   async (videoId) => {
     try {
-      const response = await axiosInstance.patch(
+      const response = await axiosInstance.put(
         `/video/toggle/publish/${videoId}`
       );
       toast.success(response.data.message);
