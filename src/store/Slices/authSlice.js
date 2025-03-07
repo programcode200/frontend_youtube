@@ -8,6 +8,7 @@ const initialState = {
   userData: null,
 };
 
+
 export const createAccount = createAsyncThunk("register", async (data) => {
   const formData = new FormData();
   formData.append("avatar", data.avatar[0]);
@@ -136,7 +137,7 @@ export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
 
 export const updateAvatar = createAsyncThunk("updateAvatar", async (avatar) => {
   try {
-    const response = await axiosInstance.patch("/users/update-avatar", avatar);
+    const response = await axiosInstance.put("/users/update-avatar", avatar);
     toast.success("Updated details successfully!!!");
     return response.data.data;
   } catch (error) {
@@ -149,8 +150,8 @@ export const updateCoverImg = createAsyncThunk(
   "updateCoverImg",
   async (coverImage) => {
     try {
-      const response = await axiosInstance.patch(
-        "/users/update-coverImg",
+      const response = await axiosInstance.put(
+        "/users/update-coverImage",
         coverImage
       );
       toast.success(response.data?.message);
@@ -166,7 +167,7 @@ export const updateUserDetails = createAsyncThunk(
   "updateUserDetails",
   async (data) => {
     try {
-      const response = await axiosInstance.patch("/users/update-user", data);
+      const response = await axiosInstance.put("/users/update-account-details", data);
       toast.success("Updated details successfully!!!");
       return response.data;
     } catch (error) {

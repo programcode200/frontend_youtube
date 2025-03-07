@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { changePassword } from "../store/Slices/authSlice";
 
 function ChangePassword() {
+
     const {
         handleSubmit,
         register,
@@ -12,13 +13,15 @@ function ChangePassword() {
         getValues,
         resetField,
     } = useForm();
+
     const dispatch = useDispatch();
 
     const onSubmit = (data) => {
         dispatch(
             changePassword({
                 oldPassword: data?.oldPassword,
-                newPassword: data?.oldPassword,
+                newPassword: data?.newPassword,
+                confirmPassword: data?.confirmPassword,
             })
         );
         resetField("oldPassword");

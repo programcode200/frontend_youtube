@@ -30,7 +30,7 @@ export const editAComment = createAsyncThunk(
   "editAComment",
   async ({ commentId, content }) => {
     try {
-      const response = await axiosInstance.patch(`/comments/c/${commentId}`, {
+      const response = await axiosInstance.put(`/comments/c/${commentId}`, {
         content,
       });
       toast.success(response.data?.message);

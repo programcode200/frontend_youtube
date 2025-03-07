@@ -74,7 +74,7 @@ export const updateAVideo = createAsyncThunk(
     formData.append("thumbnail", data.thumbnail[0]);
 
     try {
-      const response = await axiosInstance.patch(`/video/${videoId}`, formData);
+      const response = await axiosInstance.put(`/video/${videoId}`, formData);
       toast.success(response?.data?.message);
       return response.data.data;
     } catch (error) {

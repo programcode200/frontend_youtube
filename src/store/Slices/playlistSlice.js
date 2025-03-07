@@ -31,7 +31,7 @@ export const addVideoToPlaylist = createAsyncThunk(
     "addVideoToPlaylist",
     async (playlistId) => {
         try {
-            const response = await axiosInstance.patch(
+            const response = await axiosInstance.put(
                 `/playlist/add/${playlistId}`
             );
             if (response.data?.success) {
@@ -49,7 +49,7 @@ export const removeVideoFromPlaylist = createAsyncThunk(
     "removeVideoFromPlaylist",
     async (playlistId) => {
         try {
-            const response = await axiosInstance.patch(
+            const response = await axiosInstance.put(
                 `/playlist/remove/${playlistId}`
             );
             if (response.data?.success) {
@@ -95,7 +95,7 @@ export const upadtePlaylist = createAsyncThunk(
     "upadtePlaylist",
     async ({ playlistId, name, description }) => {
         try {
-            const response = await axiosInstance.patch(
+            const response = await axiosInstance.put(
                 `/playlist/${playlistId}`,
                 { name, description }
             );

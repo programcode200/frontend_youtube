@@ -22,7 +22,7 @@ export const editTweet = createAsyncThunk(
     "editTweet",
     async ({ tweetId, content }) => {
         try {
-            const response = await axiosInstance.patch(
+            const response = await axiosInstance.put(
                 `/tweets/${tweetId}`,
                 {content}
             );
