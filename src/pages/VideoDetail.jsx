@@ -58,7 +58,7 @@ function VideoDetail() {
                 createdAt={video?.createdAt}
                 description={video?.description}
                 isSubscribed={video?.owner?.isSubscribed}
-                likesCount={video?.likesCount}
+                likesCount={video?.likesCounts}
                 subscribersCount={video?.owner?.subscribersCount}
                 title={video?.title}
                 views={video?.views}
